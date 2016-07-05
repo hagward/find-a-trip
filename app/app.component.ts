@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { TripComponent } from './trip.component';
 
 @Component({
-    selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    selector: 'vasttrafik',
+    directives: [TripComponent],
+    template: `
+        <h1>Find trip</h1>
+        <trip></trip>
+        `
 })
 export class AppComponent { }
