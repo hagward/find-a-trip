@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
-import { SearchResultComponent } from './search-result.component';
+import { SearchService } from './search.service';
 import { Trip } from './trip';
 
 @Component({
     selector: 'search',
-    directives: [SearchResultComponent],
+    providers: [SearchService],
     template: `
         <label>From: <input/></label>
         <label>To: <input/></label>
-        <button>Search</button>
-        <search-result *ngIf="trips"></search-result>
+        <button (click)="search()">Search</button>
+        <ul *ngIf="trips">
+            <li *ngFor="let trip of trips">{{trip.departureTime}} - {{trip.arrivalTime}}: {{trip.line}}</li>
+        </ul>
         `
 })
 export class SearchComponent {
     trips: Trip[];
+
+    constructor(private searchService: SearchService) { }
+
+    search() {
+        this.searchService.search().then(trips => this.trips = trips);
+    }
 }
