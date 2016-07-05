@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchResultComponent } from './search-result.component';
-import { SearchResult } from './search-result';
+import { Trip } from './trip';
 
 @Component({
     selector: 'search',
@@ -9,9 +9,9 @@ import { SearchResult } from './search-result';
         <label>From: <input/></label>
         <label>To: <input/></label>
         <button>Search</button>
-        <search-result *ngIf="searchResult"></search-result>
+        <search-result *ngIf="trips"></search-result>
         `
 })
 export class SearchComponent {
-    searchResult: SearchResult;
+    trips: Trip[];
 }
