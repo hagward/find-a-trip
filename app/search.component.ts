@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { TripDetailsComponent } from './trip-details.component';
+import { SearchResultComponent } from './search-result.component';
 import { SearchResult } from './search-result';
 
 @Component({
-    selector: 'trip',
-    directives: [TripDetailsComponent],
+    selector: 'search',
+    directives: [SearchResultComponent],
     template: `
         <label>From: <input/></label>
         <label>To: <input/></label>
         <button>Search</button>
-        <trip-details *ngIf="searchResult"></trip-details>
+        <search-result *ngIf="searchResult"></search-result>
         `
 })
-export class TripComponent {
+export class SearchComponent {
     searchResult: SearchResult;
 }

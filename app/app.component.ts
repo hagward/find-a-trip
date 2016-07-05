@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { TripComponent } from './trip.component';
+import { SearchComponent } from './search.component';
 
 @Component({
     selector: 'vasttrafik',
-    directives: [TripComponent],
+    directives: [SearchComponent],
     template: `
         <h1>Find trip</h1>
-        <trip></trip>
+        <search></search>
         `
 })
 export class AppComponent { }
