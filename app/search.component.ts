@@ -9,8 +9,10 @@ import { Trip } from './trip';
         <label>From: <input/></label>
         <label>To: <input/></label>
         <button (click)="search()">Search</button>
-        <ul *ngIf="trips">
-            <li *ngFor="let trip of trips">{{trip.departureTime}} - {{trip.arrivalTime}}: {{trip.line}}</li>
+        <ul class="items" *ngIf="trips">
+            <li *ngFor="let trip of trips">
+                {{trip.legs[0].name}}
+            </li>
         </ul>
         `
 })
@@ -20,6 +22,8 @@ export class SearchComponent {
     constructor(private searchService: SearchService) { }
 
     search() {
-        this.searchService.search().then(trips => this.trips = trips);
+        this.searchService.search().then(trips => {
+            this.trips = trips;
+        });
     }
 }

@@ -1,17 +1,26 @@
 import { Trip } from './trip';
 
-export var TRIPS: Trip[] = [
-    {
-        departureTime: new Date(2016, 7, 10, 10, 15),
-        arrivalTime: new Date(2016, 7, 10, 12, 5),
-        line: "55"
-    }, {
-        departureTime: new Date(2016, 7, 11, 6),
-        arrivalTime: new Date(2016, 7, 11, 7),
-        line: "12"
-    }, {
-        departureTime: new Date(2016, 7, 12, 6, 15),
-        arrivalTime: new Date(2016, 7, 12, 6, 25),
-        line: "3"
-    }
-];
+export var TRIPS: Trip[] = [{
+    legs: [{
+        name: 'Buss 61',
+        type: 'BUS',
+        id: '1',
+        direction: 'Vänersborg Resecentrum',
+        origin: {
+            name: 'Trollhättan, Resecentrum, Trollhättan',
+            type: 'ST',
+            id: '2',
+            routeIndex: '8',
+            date: new Date(),
+            track: 'L'
+        },
+        destination: {
+            name: 'NÄL, Trollhättan',
+            type: 'ST',
+            id: '3',
+            routeIndex: '22',
+            date: new Date(),
+            track: 'B'
+        }
+    }]
+}];
