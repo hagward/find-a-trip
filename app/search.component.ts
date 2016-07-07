@@ -9,7 +9,7 @@ import { Trip } from './trip';
         <label>From: <input/></label>
         <label>To: <input/></label>
         <button (click)="search()">Search</button>
-        <ul class="items" *ngIf="trips">
+        <ul class="trip-list" *ngIf="trips">
             <li *ngFor="let trip of trips">
                 {{trip.legs[0].name}}
             </li>
