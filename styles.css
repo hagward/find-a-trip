@@ -12,11 +12,17 @@ h1 {
   background-color: #E77;
   list-style: none;
   padding: 1rem;
+  display: flex;
 }
 
 .trip-list li:hover {
   background-color: #D66;
   cursor: pointer;
+}
+
+.column {
+  margin: auto;
+  display: inline-block;
 }
 
 * {
