@@ -2,6 +2,11 @@ h1 {
   font-size: 2rem;
 }
 
+.main-container {
+  width: 75vw;
+  margin: 2rem auto;
+}
+
 .trip-list {
   box-shadow: 0 2px 3px #777;
   padding: 0;
