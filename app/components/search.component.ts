@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchService } from './search.service';
-import { Trip } from './trip';
+import { SearchService } from '../services/search.service';
+import { Trip } from '../trip';
 
 @Component({
     selector: 'search',
