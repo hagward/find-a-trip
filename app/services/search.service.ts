@@ -4,6 +4,6 @@ import { TRIPS } from '../mock-trips';
 @Injectable()
 export class SearchService {
     search() {
-        return Promise.resolve(TRIPS);
+        return Promise.resolve(TRIPS.TripList.Trip);
     }
 }
