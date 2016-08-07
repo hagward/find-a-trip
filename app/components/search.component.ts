@@ -11,19 +11,19 @@ import { SearchService } from '../services/search.service';
         <button (click)="search()">Search</button>
         <div class="trip-list" *ngIf="trips">
             <div class="header-row">
-                <span class="col-2">Startdatum</span>
+                <span class="col-2 text-center">Starttid</span>
                 <span class="col-2">Startdest.</span>
-                <span class="col-2">Slutdatum</span>
+                <span class="col-2 text-center">Sluttid</span>
                 <span class="col-2">Slutdest.</span>
                 <span class="col-4">Färdmedel</span>
             </div>
 
             <div *ngFor="let trip of trips">
                 <div class="row" *ngIf="trip.Leg.length">
-                    <span class="col-2">{{trip.Leg[0].Origin.date}}</span>
+                    <span class="col-2 text-center">{{trip.Leg[0].Origin.time}}</span>
                     <span class="col-2">{{trip.Leg[0].Origin.name}}</span>
 
-                    <span class="col-2">{{trip.Leg[trip.Leg.length-1].Destination.date}}</span>
+                    <span class="col-2 text-center">{{trip.Leg[trip.Leg.length-1].Destination.time}}</span>
                     <span class="col-2">{{trip.Leg[trip.Leg.length-1].Destination.name}}</span>
 
                     <span class="col-4">
@@ -32,10 +32,10 @@ import { SearchService } from '../services/search.service';
                 </div>
 
                 <div class="row" *ngIf="!trip.Leg.length">
-                    <span class="col-2">{{trip.Leg.Origin.date}}</span>
+                    <span class="col-2 text-center">{{trip.Leg.Origin.time}}</span>
                     <span class="col-2">{{trip.Leg.Origin.name}}</span>
 
-                    <span class="col-2">{{trip.Leg.Destination.date}}</span>
+                    <span class="col-2 text-center">{{trip.Leg.Destination.time}}</span>
                     <span class="col-2">{{trip.Leg.Destination.name}}</span>
 
                     <span class="col-4">{{trip.Leg.name}} ({{trip.Leg.direction}})</span>
