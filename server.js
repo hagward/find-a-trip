@@ -10,34 +10,38 @@ app.listen(port, () => {
 });
 
 function authorize(hostname, path, key, secret, scope) {
-    const authorization = new Buffer(key + ':' + secret).toString('base64');
-    const options = {
-        hostname: hostname,
-        port: 443,
-        path: path,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + authorization
-        }
-    };
+    return new Promise((resolve, reject) => {
+        const authorization = new Buffer(key + ':' + secret).toString('base64');
+        const options = {
+            hostname: hostname,
+            port: 443,
+            path: path,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + authorization
+            }
+        };
 
-    const body = 'grant_type=client_credentials&scope=' + scope;
+        const body = 'grant_type=client_credentials&scope=' + scope;
 
-    const req = https.request(options, (res) => {
-        console.log('STATUS:', res.statusCode);
-        console.log('HEADERS:', JSON.stringify(res.headers));
+        const req = https.request(options, (res) => {
+            console.log('STATUS:', res.statusCode);
+            console.log('HEADERS:', JSON.stringify(res.headers));
 
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => {
-            console.log('BODY:', chunk);
+            res.setEncoding('utf8');
+            res.on('data', (token) => {
+                console.log('BODY:', token);
+                resolve(token);
+            });
         });
-    });
 
-    req.on('error', (e) => {
-        console.log('Authorization error:', e.message);
-    });
+        req.on('error', (e) => {
+            console.log('Authorization error:', e.message);
+            reject(e);
+        });
 
-    req.write(body);
-    req.end();
+        req.write(body);
+        req.end();
+    });
 }
