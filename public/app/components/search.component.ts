@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { SearchService } from '../services/search.service';
+import { SearchService, SearchOptions } from '../services/search.service';
 
 @Component({
     selector: 'search',
     providers: [AuthService, SearchService],
     template: `
-        <label>From: <input/></label>
-        <label>To: <input/></label>
+        <label>From: <input type="text" [(ngModel)]="model.from"></label>
+        <label>To: <input type="text" [(ngModel)]="model.to"></label>
         <button (click)="search()">Search</button>
         <div class="trip-list" *ngIf="trips">
             <div class="header-row">
@@ -46,17 +46,23 @@ import { SearchService } from '../services/search.service';
 })
 export class SearchComponent {
     trips: any;
+    model: SearchOptions;
 
-    constructor(private authService: AuthService, private searchService: SearchService) { }
+    constructor(private authService: AuthService, private searchService: SearchService) {
+        this.model = {
+            authToken: '',
+            from: '',
+            to: '',
+            date: new Date()
+        };
+    }
 
     search() {
-        // this.authService
-        //     .authorize('https://api.vasttrafik.se/token', 'key', 'secret')
-        //     .subscribe(response => console.log('response:', response),
-        //                error => console.log('error:', error));
-
-        this.searchService.search().then(trips => {
-            this.trips = trips;
-        });
+        this.authService.authorize().then(token => {
+            this.model.authToken = '' + token;
+            this.searchService.search(this.model).then(trips => {
+                this.trips = trips;
+            });
+        })
     }
 }
