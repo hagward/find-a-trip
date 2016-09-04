@@ -10,15 +10,11 @@ export class SearchService {
             const headers = new Headers({ 'Authorization': 'Bearer ' + options.authToken });
             const requestOptions = new RequestOptions({ headers: headers });
 
-            const isoDate = options.date.toISOString();
-            const date = isoDate.substr(0, 10);
-            const time = isoDate.substr(11, 5);
-
             const url = 'https://api.vasttrafik.se/bin/rest.exe/v2/trip'
                 + '?originId=' + encodeURIComponent(options.originId)
                 + '&destId=' + encodeURIComponent(options.destId)
-                + '&date=' + encodeURIComponent(date)
-                + '&time=' + encodeURIComponent(time)
+                + '&date=' + encodeURIComponent(options.date)
+                + '&time=' + encodeURIComponent(options.time)
                 + '&format=json';
 
             console.log('Search URL:', url);
@@ -41,5 +37,6 @@ export interface SearchOptions {
     authToken: string;
     originId: string;
     destId: string;
-    date: Date;
+    date: string;
+    time: string;
 }

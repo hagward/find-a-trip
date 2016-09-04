@@ -18,7 +18,7 @@ import { SearchService, SearchOptions } from '../services/search.service';
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputDatetime">När</label>
-                    <input type="datetime-local" class="form-control" id="inputDatetime">
+                    <input type="datetime-local" class="form-control" id="inputDatetime" [(ngModel)]="model.datetime">
                 </div>
             </div>
             <div class="row">
@@ -58,8 +58,13 @@ export class SearchComponent {
     constructor(private authService: AuthService, private searchService: SearchService) {
         this.model = {
             originId: '9021014001950000',
-            destId: '9021014004090000'
+            destId: '9021014004090000',
+
+            // Ex: '2016-09-04T21:24'.
+            datetime: new Date().toLocaleString('sv-SE').replace(' ', 'T').substr(0, 16)
         };
+
+        console.log(this.model);
     }
 
     search() {
@@ -68,7 +73,8 @@ export class SearchComponent {
                 authToken: '' + token,
                 originId: this.model.originId,
                 destId: this.model.destId,
-                date: new Date()
+                date: this.model.datetime.substr(0, 10),
+                time: this.model.datetime.substr(11, 5)
             };
 
             this.searchService.search(searchOptions).then(trips => {
