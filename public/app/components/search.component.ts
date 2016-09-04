@@ -6,42 +6,49 @@ import { SearchService, SearchOptions } from '../services/search.service';
     selector: 'search',
     providers: [AuthService, SearchService],
     template: `
-        <label>From: <input type="text" [(ngModel)]="model.originId"></label>
-        <label>To: <input type="text" [(ngModel)]="model.destId"></label>
-        <button (click)="search()">Search</button>
-        <div class="trip-list" *ngIf="trips">
-            <div class="header-row">
-                <span class="col-2 text-center">Starttid</span>
-                <span class="col-2">Startdest.</span>
-                <span class="col-2 text-center">Sluttid</span>
-                <span class="col-2">Slutdest.</span>
-                <span class="col-4">Färdmedel</span>
-            </div>
-
-            <div *ngFor="let trip of trips">
-                <div class="row" *ngIf="trip.Leg.length">
-                    <span class="col-2 text-center">{{trip.Leg[0].Origin.time}}</span>
-                    <span class="col-2">{{trip.Leg[0].Origin.name}}</span>
-
-                    <span class="col-2 text-center">{{trip.Leg[trip.Leg.length-1].Destination.time}}</span>
-                    <span class="col-2">{{trip.Leg[trip.Leg.length-1].Destination.name}}</span>
-
-                    <span class="col-4">
-                        <span *ngFor="let leg of trip.Leg">{{leg.name}}</span>
-                    </span>
+        <form class="form">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="inputOrigin">Från</label>
+                    <input type="text" class="form-control" id="inputOrigin" [(ngModel)]="model.originId">
                 </div>
-
-                <div class="row" *ngIf="!trip.Leg.length">
-                    <span class="col-2 text-center">{{trip.Leg.Origin.time}}</span>
-                    <span class="col-2">{{trip.Leg.Origin.name}}</span>
-
-                    <span class="col-2 text-center">{{trip.Leg.Destination.time}}</span>
-                    <span class="col-2">{{trip.Leg.Destination.name}}</span>
-
-                    <span class="col-4">{{trip.Leg.name}} ({{trip.Leg.direction}})</span>
+                <div class="form-group col-md-4">
+                    <label for="inputDestination">Till</label>
+                    <input type="text" class="form-control" id="inputDestination" [(ngModel)]="model.destId">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputDatetime">När</label>
+                    <input type="datetime-local" class="form-control" id="inputDatetime">
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" (click)="search()">Search</button>
+                </div>
+            </div>
+        </form>
+        <table class="table" *ngIf="trips">
+            <thead>
+                <tr>
+                    <th>Avgångstid</th>
+                    <th>Ankomsttid</th>
+                    <th>Färdmedel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let trip of trips">
+                    <td>{{trip.Leg[0].Origin.time}}</td>
+                    <td>{{trip.Leg[trip.Leg.length-1].Destination.time}}</td>
+                    <td>
+                        <span *ngFor="let leg of trip.Leg; let i=index">
+                            <span *ngIf="i">&rarr;</span>
+                            {{leg.name}}
+                            <span *ngIf="leg.direction">({{leg.direction}})</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         `
 })
 export class SearchComponent {

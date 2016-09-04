@@ -24,7 +24,14 @@ export class SearchService {
             console.log('Search URL:', url);
 
             this.http.get(url, requestOptions).subscribe(response => {
-                resolve(response.json().TripList.Trip);
+                const trips = response.json().TripList.Trip;
+                trips.forEach((trip: any) => {
+                    if (!trip.Leg.length) {
+                        // Ensure that trip.Leg is always an array.
+                        trip.Leg = [trip.Leg];
+                    }
+                });
+                resolve(trips);
             });
         });
     }
