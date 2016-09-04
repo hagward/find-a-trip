@@ -13,12 +13,15 @@ export class SearchService {
             const isoDate = options.date.toISOString();
             const date = isoDate.substr(0, 10);
             const time = isoDate.substr(11, 5);
+
             const url = 'https://api.vasttrafik.se/bin/rest.exe/v2/trip'
-                + '?originCoordName=' + options.from
-                + '&destCoordName=' + options.to
-                + '&date=' + date
-                + '&time=' + time
+                + '?originCoordName=' + encodeURIComponent(options.from)
+                + '&destCoordName=' + encodeURIComponent(options.to)
+                + '&date=' + encodeURIComponent(date)
+                + '&time=' + encodeURIComponent(time)
                 + '&format=json';
+
+            console.log('Search URL:', url);
 
             this.http.get(url, requestOptions).subscribe(response => {
                 resolve(response.json().TripList.Trip);
