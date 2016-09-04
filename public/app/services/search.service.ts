@@ -15,8 +15,8 @@ export class SearchService {
             const time = isoDate.substr(11, 5);
 
             const url = 'https://api.vasttrafik.se/bin/rest.exe/v2/trip'
-                + '?originCoordName=' + encodeURIComponent(options.from)
-                + '&destCoordName=' + encodeURIComponent(options.to)
+                + '?originId=' + encodeURIComponent(options.originId)
+                + '&destId=' + encodeURIComponent(options.destId)
                 + '&date=' + encodeURIComponent(date)
                 + '&time=' + encodeURIComponent(time)
                 + '&format=json';
@@ -32,7 +32,7 @@ export class SearchService {
 
 export interface SearchOptions {
     authToken: string;
-    from: string;
-    to: string;
+    originId: string;
+    destId: string;
     date: Date;
 }

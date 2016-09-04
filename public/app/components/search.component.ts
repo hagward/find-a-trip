@@ -6,8 +6,8 @@ import { SearchService, SearchOptions } from '../services/search.service';
     selector: 'search',
     providers: [AuthService, SearchService],
     template: `
-        <label>From: <input type="text" [(ngModel)]="model.from"></label>
-        <label>To: <input type="text" [(ngModel)]="model.to"></label>
+        <label>From: <input type="text" [(ngModel)]="model.originId"></label>
+        <label>To: <input type="text" [(ngModel)]="model.destId"></label>
         <button (click)="search()">Search</button>
         <div class="trip-list" *ngIf="trips">
             <div class="header-row">
@@ -46,21 +46,25 @@ import { SearchService, SearchOptions } from '../services/search.service';
 })
 export class SearchComponent {
     trips: any;
-    model: SearchOptions;
+    model: any;
 
     constructor(private authService: AuthService, private searchService: SearchService) {
         this.model = {
-            authToken: '',
-            from: '',
-            to: '',
-            date: new Date()
+            originId: '9021014001950000',
+            destId: '9021014004090000'
         };
     }
 
     search() {
         this.authService.authorize().then(token => {
-            this.model.authToken = '' + token;
-            this.searchService.search(this.model).then(trips => {
+            const searchOptions = {
+                authToken: '' + token,
+                originId: this.model.originId,
+                destId: this.model.destId,
+                date: new Date()
+            };
+
+            this.searchService.search(searchOptions).then(trips => {
                 this.trips = trips;
             });
         })
