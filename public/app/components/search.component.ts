@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { SearchService, SearchOptions } from '../services/search.service';
+import { LocationInputComponent } from './location-input.component';
 
 @Component({
     selector: 'search',
     providers: [AuthService, SearchService],
+    directives: [LocationInputComponent],
     template: `
         <form class="form">
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="inputOrigin">Från</label>
-                    <input type="text" class="form-control" id="inputOrigin" [(ngModel)]="model.originId">
+                    <location-input class="form-control" id="inputOrigin" (selected)="model.originId=$event"></location-input>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputDestination">Till</label>
-                    <input type="text" class="form-control" id="inputDestination" [(ngModel)]="model.destId">
+                    <location-input class="form-control" id="inputDestination" (selected)="model.destinationId=$event"></location-input>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputDatetime">När</label>
@@ -57,20 +59,20 @@ export class SearchComponent {
 
     constructor(private authService: AuthService, private searchService: SearchService) {
         this.model = {
-            originId: '9021014001950000',
-            destId: '9021014004090000',
+            originId: '',
+            destinationId: '',
 
             // Ex: '2016-09-04T21:24'.
             datetime: new Date().toLocaleString('sv-SE').replace(' ', 'T').substr(0, 16)
         };
-
-        console.log(this.model);
     }
 
     search() {
+        console.log(this.model);
+
         const searchOptions = {
             originId: this.model.originId,
-            destId: this.model.destId,
+            destId: this.model.destinationId,
             date: this.model.datetime.substr(0, 10),
             time: this.model.datetime.substr(11, 5)
         };

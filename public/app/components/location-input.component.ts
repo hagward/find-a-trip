@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { LocationService } from '../services/location.service';
 
 @Component({
@@ -22,8 +22,9 @@ import { LocationService } from '../services/location.service';
 })
 export class LocationInputComponent {
     private input: string;
-    private selected: any;
     private suggestions: any;
+
+    @Output() selected: EventEmitter<string> = new EventEmitter();
 
     constructor(private locationService: LocationService) {}
 
@@ -33,15 +34,14 @@ export class LocationInputComponent {
         } else {
             this.suggestions = null;
         }
+
+        this.selected.emit(null);
     }
 
     select(suggestion: any) {
-        this.selected = suggestion;
         this.input = suggestion.name;
         this.suggestions = null;
-    }
 
-    getSelected() {
-        return this.selected;
+        this.selected.emit(suggestion.id);
     }
 }
