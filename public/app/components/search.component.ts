@@ -68,18 +68,15 @@ export class SearchComponent {
     }
 
     search() {
-        this.authService.authorize().then(token => {
-            const searchOptions = {
-                authToken: '' + token,
-                originId: this.model.originId,
-                destId: this.model.destId,
-                date: this.model.datetime.substr(0, 10),
-                time: this.model.datetime.substr(11, 5)
-            };
+        const searchOptions = {
+            originId: this.model.originId,
+            destId: this.model.destId,
+            date: this.model.datetime.substr(0, 10),
+            time: this.model.datetime.substr(11, 5)
+        };
 
-            this.searchService.search(searchOptions).then(trips => {
-                this.trips = trips;
-            });
-        })
+        this.searchService.search(searchOptions).then(trips => {
+            this.trips = trips;
+        });
     }
 }
