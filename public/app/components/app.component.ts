@@ -5,7 +5,7 @@ import { SearchComponent } from './search.component';
     selector: 'app',
     directives: [SearchComponent],
     template: `
-        <div class="container">
+        <div class="main-container">
             <search></search>
         </div>
         `

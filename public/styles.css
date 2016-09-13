@@ -1,10 +1,27 @@
-h1 {
-  font-size: 2rem;
+/* SEARCH COMPONENT */
+
+input {
+  border: 1px solid #d6d6d6;
+  padding: 0.6rem;
+  height: 50px;
 }
 
-.main-container {
-  width: 80vw;
-  margin: 2rem auto;
+input.left-input, .left-input input {
+  border-radius: 2px 0 0 2px;
+}
+
+input.mid-input, .mid-input input {
+  border-left: none;
+}
+
+input.right-input, .right-input input {
+  border-radius: 0 2px 2px 0;
+  border-left: none;
+}
+
+.search-row {
+  display: flex;
+  justify-content: center;
 }
 
 .trip-list {
@@ -20,10 +37,9 @@ h1 {
 
 .row:hover {
   background-color: #f0f0f0;
-  cursor: pointer;
 }
 
-.row > span, .header-row > span {
+.row > div, .header-row > div {
   padding: 1rem;
   margin: auto;
   box-sizing: border-box;
@@ -33,6 +49,43 @@ h1 {
 .header-row {
   font-weight: bold;
   background-color: paleturquoise;
+}
+
+/* LOCATION INPUT COMPONENT */
+
+.location-suggestions {
+  border: 1px solid #d6d6d6;
+  border-radius: 2px;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  max-height: 300px;
+  overflow-y: auto;
+  width: auto;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+  background-color: white;
+  z-index: 1080;
+}
+
+.location-suggestions > li > a {
+  display: block;
+  padding: 0.4rem;
+}
+
+.location-suggestions > li > a:hover {
+  cursor: pointer;
+  background-color: #d6d6d6;
+}
+
+/* MISC */
+
+h1 {
+  font-size: 2rem;
+}
+
+.main-container {
+  width: 80vw;
+  margin: 2rem auto;
 }
 
 .text-center {
