@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LocationService } from '../services/location.service';
+import { Location, LocationService } from '../services/location.service';
 
 @Component({
     selector: 'location-input',
@@ -7,7 +7,7 @@ import { LocationService } from '../services/location.service';
     template: `
         <div class="location-input">
             <input type="text" #location (keyup)="onKey(location.value)" [(ngModel)]="input">
-            <ul class="location-suggestions" *ngIf="suggestions">
+            <ul class="location-suggestions" *ngIf="suggestions.length">
                 <li *ngFor="let suggestion of suggestions">
                     <a (click)="select(suggestion)">{{suggestion.name}}</a>
                 </li>
@@ -17,7 +17,7 @@ import { LocationService } from '../services/location.service';
 })
 export class LocationInputComponent {
     private input: string;
-    private suggestions: any;
+    private suggestions: Location[] = [];
 
     @Output() selected: EventEmitter<string> = new EventEmitter();
 
@@ -25,9 +25,11 @@ export class LocationInputComponent {
 
     onKey(value: string) {
         if (value !== '') {
-            this.locationService.search(value).then(suggestions => this.suggestions = suggestions);
+            this.locationService.search(value).then(suggestions => {
+                this.suggestions = suggestions;
+            });
         } else {
-            this.suggestions = null;
+            this.suggestions = [];
         }
 
         this.selected.emit(null);
@@ -35,7 +37,7 @@ export class LocationInputComponent {
 
     select(suggestion: any) {
         this.input = suggestion.name;
-        this.suggestions = null;
+        this.suggestions = [];
 
         this.selected.emit(suggestion.id);
     }
