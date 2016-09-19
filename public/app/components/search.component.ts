@@ -5,8 +5,7 @@ import { LocationInputComponent } from './location-input.component';
 
 @Component({
     selector: 'search',
-    providers: [AuthService, SearchService],
-    directives: [LocationInputComponent],
+    entryComponents: [LocationInputComponent],
     template: `
         <form>
             <div class="search-row">
@@ -21,7 +20,7 @@ import { LocationInputComponent } from './location-input.component';
                 <div class="mid-input">
                     <label for="inputDatetime">När</label>
                     <div>
-                        <input type="datetime-local" id="inputDatetime" [(ngModel)]="model.datetime">
+                        <input type="datetime-local" id="inputDatetime" name="inputDateTime" [(ngModel)]="model.datetime">
                     </div>
                 </div>
                 <div class="right-input">

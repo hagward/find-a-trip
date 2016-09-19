@@ -3,7 +3,6 @@ import { Location, LocationService } from '../services/location.service';
 
 @Component({
     selector: 'location-input',
-    providers: [LocationService],
     template: `
         <div class="location-input">
             <input type="text" #location (keyup)="onKey(location.value)" [(ngModel)]="input">

@@ -3,11 +3,11 @@ import { SearchComponent } from './search.component';
 
 @Component({
     selector: 'app',
-    directives: [SearchComponent],
+    entryComponents: [SearchComponent],
     template: `
         <div class="main-container">
             <search></search>
         </div>
         `
 })
-export class AppComponent { }
+export class AppComponent {}
