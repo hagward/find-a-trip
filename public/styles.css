@@ -8,6 +8,10 @@ input {
   width: 100%;
 }
 
+input[type=button] {
+  font-size: 1.1rem;
+}
+
 input.left-input, .left-input input {
   border-radius: 2px 0 0 2px;
   border-right: 1px solid #f2f2f2;
