@@ -84,6 +84,8 @@ input.right-input, .right-input input {
 
 body {
   background-color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  color: #222;
 }
 
 h1 {
@@ -111,8 +113,3 @@ h1 {
 .col-10 { width: 83.33%; }
 .col-11 { width: 91.66%; }
 .col-12 { width: 100%; }
-
-* {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #222;
-}
