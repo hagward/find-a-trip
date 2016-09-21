@@ -1,5 +1,5 @@
 <div class="location-input">
-    <input type="text" #location (keyup)="onKey(location.value)" [(ngModel)]="input">
+    <input type="text" placeholder="{{placeholder}}" #location (keyup)="onKey(location.value)" [(ngModel)]="input">
     <ul class="location-suggestions" *ngIf="suggestions.length">
         <li *ngFor="let suggestion of suggestions">
             <a (click)="select(suggestion)">{{suggestion.name}}</a>

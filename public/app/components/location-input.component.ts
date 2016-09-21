@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Location, LocationService } from '../services/location.service';
 
 @Component({
@@ -9,6 +9,7 @@ export class LocationInputComponent {
     private input: string;
     private suggestions: Location[] = [];
 
+    @Input() placeholder: string;
     @Output() selected: EventEmitter<string> = new EventEmitter();
 
     constructor(private locationService: LocationService) {}

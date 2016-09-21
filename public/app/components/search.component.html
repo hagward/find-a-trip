@@ -2,11 +2,11 @@
     <div class="search-row">
         <div class="left-input fill-width">
             <label for="inputOrigin">Från</label>
-            <location-input id="inputOrigin" (selected)="model.originId=$event"></location-input>
+            <location-input id="inputOrigin" placeholder="Startstation" (selected)="model.originId=$event"></location-input>
         </div>
         <div class="mid-input fill-width">
             <label for="inputDestination">Till</label>
-            <location-input id="inputDestination" (selected)="model.destinationId=$event"></location-input>
+            <location-input id="inputDestination" placeholder="Slutstation" (selected)="model.destinationId=$event"></location-input>
         </div>
         <div class="mid-input fill-width">
             <label for="inputDatetime">När</label>
@@ -16,7 +16,7 @@
         </div>
         <div class="right-input">
             <div>&nbsp;</div>
-            <input type="button" class="right-input" (click)="search()" value="Hitta resa!">
+            <input type="button" class="right-input" (click)="search()" value="Hitta resa">
         </div>
     </div>
 </form>
