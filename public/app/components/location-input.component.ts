@@ -3,16 +3,7 @@ import { Location, LocationService } from '../services/location.service';
 
 @Component({
     selector: 'location-input',
-    template: `
-        <div class="location-input">
-            <input type="text" #location (keyup)="onKey(location.value)" [(ngModel)]="input">
-            <ul class="location-suggestions" *ngIf="suggestions.length">
-                <li *ngFor="let suggestion of suggestions">
-                    <a (click)="select(suggestion)">{{suggestion.name}}</a>
-                </li>
-            </ul>
-        </div>
-    `
+    templateUrl: 'app/components/location-input.component.html'
 })
 export class LocationInputComponent {
     private input: string;

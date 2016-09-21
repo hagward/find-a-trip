@@ -6,48 +6,7 @@ import { LocationInputComponent } from './location-input.component';
 @Component({
     selector: 'search',
     entryComponents: [LocationInputComponent],
-    template: `
-        <form>
-            <div class="search-row">
-                <div class="left-input">
-                    <label for="inputOrigin">Från</label>
-                    <location-input id="inputOrigin" (selected)="model.originId=$event"></location-input>
-                </div>
-                <div class="mid-input">
-                    <label for="inputDestination">Till</label>
-                    <location-input id="inputDestination" (selected)="model.destinationId=$event"></location-input>
-                </div>
-                <div class="mid-input">
-                    <label for="inputDatetime">När</label>
-                    <div>
-                        <input type="datetime-local" id="inputDatetime" name="inputDateTime" [(ngModel)]="model.datetime">
-                    </div>
-                </div>
-                <div class="right-input">
-                    <div>&nbsp;</div>
-                    <input type="button" class="right-input" (click)="search()" value="Search">
-                </div>
-            </div>
-        </form>
-        <div class="trip=list" *ngIf="trips">
-            <div class="header-row">
-                <div class="col-3 text-center">Avgångstid</div>
-                <div class="col-3 text-center">Ankomsttid</div>
-                <div class="col-6">Färdmedel</div>
-            </div>
-            <div class="row" *ngFor="let trip of trips">
-                <div class="col-3 text-center">{{trip.Leg[0].Origin.time}}</div>
-                <div class="col-3 text-center">{{trip.Leg[trip.Leg.length-1].Destination.time}}</div>
-                <div class="col-6">
-                    <span *ngFor="let leg of trip.Leg; let i=index">
-                        <span *ngIf="i">&rarr;</span>
-                        {{leg.name}}
-                        <span *ngIf="leg.direction">({{leg.direction}})</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        `
+    templateUrl: 'app/components/search.component.html'
 })
 export class SearchComponent {
     trips: any;
