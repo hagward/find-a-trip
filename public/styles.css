@@ -1,17 +1,20 @@
 /* SEARCH COMPONENT */
 
 input {
-  border: 1px solid #d6d6d6;
+  border: none;
   padding: 0.6rem;
-  height: 50px;
+  height: 3rem;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
 }
 
 input.left-input, .left-input input {
   border-radius: 2px 0 0 2px;
+  border-right: 1px solid #f2f2f2;
 }
 
 input.mid-input, .mid-input input {
   border-left: none;
+  border-right: 1px solid #f2f2f2;
 }
 
 input.right-input, .right-input input {
@@ -78,6 +81,10 @@ input.right-input, .right-input input {
 }
 
 /* MISC */
+
+body {
+  background-color: #f2f2f2;
+}
 
 h1 {
   font-size: 2rem;
