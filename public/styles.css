@@ -5,6 +5,7 @@ input {
   padding: 0.6rem;
   height: 3rem;
   box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+  width: 100%;
 }
 
 input.left-input, .left-input input {
@@ -20,6 +21,10 @@ input.mid-input, .mid-input input {
 input.right-input, .right-input input {
   border-radius: 0 2px 2px 0;
   border-left: none;
+}
+
+.fill-width {
+  flex-grow: 1;
 }
 
 .search-row {

@@ -1,14 +1,14 @@
 <form>
     <div class="search-row">
-        <div class="left-input">
+        <div class="left-input fill-width">
             <label for="inputOrigin">Från</label>
             <location-input id="inputOrigin" (selected)="model.originId=$event"></location-input>
         </div>
-        <div class="mid-input">
+        <div class="mid-input fill-width">
             <label for="inputDestination">Till</label>
             <location-input id="inputDestination" (selected)="model.destinationId=$event"></location-input>
         </div>
-        <div class="mid-input">
+        <div class="mid-input fill-width">
             <label for="inputDatetime">När</label>
             <div>
                 <input type="datetime-local" id="inputDatetime" name="inputDateTime" [(ngModel)]="model.datetime">
