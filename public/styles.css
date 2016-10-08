@@ -9,6 +9,10 @@ input {
   font-size: 1.1rem;
 }
 
+input:focus {
+  box-shadow: 0 -1px 0 dodgerblue, 0 0 2px dodgerblue, 0 2px 4px dodgerblue;
+}
+
 input.left-input, .left-input input {
   border-radius: 2px 0 0 2px;
   border-right: 1px solid #f2f2f2;
