@@ -1,26 +1,22 @@
 <form>
     <div class="search-row">
         <div class="left-input fill-width">
-            <label for="inputOrigin">Från</label>
             <location-input id="inputOrigin" placeholder="Startstation" (selected)="model.originId=$event"></location-input>
         </div>
         <div class="mid-input fill-width">
-            <label for="inputDestination">Till</label>
             <location-input id="inputDestination" placeholder="Slutstation" (selected)="model.destinationId=$event"></location-input>
         </div>
         <div class="mid-input fill-width">
-            <label for="inputDatetime">När</label>
             <div>
                 <input type="datetime-local" id="inputDatetime" name="inputDateTime" [(ngModel)]="model.datetime">
             </div>
         </div>
         <div class="right-input">
-            <div>&nbsp;</div>
             <input type="button" class="right-input" (click)="search()" value="Hitta resa">
         </div>
     </div>
 </form>
-<div class="trip=list" *ngIf="trips">
+<div class="trip-list" *ngIf="trips">
     <div class="header-row">
         <div class="col-3 text-center">Avgångstid</div>
         <div class="col-3 text-center">Ankomsttid</div>
