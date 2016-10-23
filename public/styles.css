@@ -116,7 +116,7 @@ h1 {
   font-size: 2rem;
 }
 
-.main-container {
+app {
   display: flex;
   justify-content: center;
   align-items: center;

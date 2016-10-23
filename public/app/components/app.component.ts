@@ -4,10 +4,6 @@ import { SearchComponent } from './search.component';
 @Component({
     selector: 'app',
     entryComponents: [SearchComponent],
-    template: `
-        <div class="main-container">
-            <search></search>
-        </div>
-        `
+    template: `<search></search>`
 })
 export class AppComponent {}
