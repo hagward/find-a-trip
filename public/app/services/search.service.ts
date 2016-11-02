@@ -22,7 +22,10 @@ export class SearchService {
                 console.log('Search URL:', url);
 
                 this.http.get(url, requestOptions).subscribe(response => {
-                    const trips = response.json().TripList.Trip;
+                    const json = response.json();
+                    console.log('JSON response:', json);
+
+                    const trips = json.TripList.Trip || [];
                     trips.forEach((trip: any) => {
                         if (!trip.Leg.length) {
                             // Ensure that trip.Leg is always an array.
