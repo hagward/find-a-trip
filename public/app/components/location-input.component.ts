@@ -8,22 +8,30 @@ import { Location, LocationService } from '../services/location.service';
 export class LocationInputComponent {
     private input: string;
     private suggestions: Location[] = [];
+    private timer: number = -1;
 
     @Input() placeholder: string;
     @Output() selected: EventEmitter<string> = new EventEmitter();
 
     constructor(private locationService: LocationService) {}
 
-    onKey(value: string) {
-        if (value !== '') {
-            this.locationService.search(value).then(suggestions => {
-                this.suggestions = suggestions;
-            });
-        } else {
-            this.suggestions = [];
-        }
+    onChange(value: string) {
+        this.input = value;
 
-        this.selected.emit(null);
+        if (this.timer === -1) {
+            this.timer = window.setTimeout(() => {
+                if (this.input !== '') {
+                    this.locationService.search(this.input).then(suggestions => {
+                        this.suggestions = suggestions;
+                    });
+                } else {
+                    this.suggestions = [];
+                }
+
+                this.selected.emit(null);
+                this.timer = -1;
+            }, 500);
+        }
     }
 
     select(suggestion: any) {
