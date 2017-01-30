@@ -1,24 +1,15 @@
-.idea
-node_modules
-jspm_packages
-link-checker-results.txt
-**/*npm-debug.log.*
-*.js.map
-e2e/**/*.js
-e2e/**/*.js.map
-_test-output
-_temp
-vasttrafik.js
+src/backend/node_modules
+src/backend/vasttrafik.js
 
-public/typings/**
-public/node_modules
-public/jspm_packages
-public/link-checker-results.txt
-public/**/*npm-debug.log.*
-public/**/*.js
-public/**/*.js.map
-public/_test-output
-public/_temp
+src/frontend/typings/**
+src/frontend/node_modules
+src/frontend/jspm_packages
+src/frontend/link-checker-results.txt
+src/frontend/**/*npm-debug.log.*
+src/frontend/**/*.js
+src/frontend/**/*.js.map
+src/frontend/_test-output
+src/frontend/_temp
 
 !karma*.js
 !protractor*.js

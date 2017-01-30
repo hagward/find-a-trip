@@ -4,7 +4,7 @@ const vasttrafik = require('./vasttrafik.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use('/', express.static('public'));
+app.use('/', express.static('../frontend'));
 
 app.get('/token', (req, res) => {
     authorize(vasttrafik.host, vasttrafik.path, vasttrafik.key, vasttrafik.secret, '1')
